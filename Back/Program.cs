@@ -27,7 +27,7 @@ app.MapGet("kaka", () =>
 {
     Random random = new Random();
     for (int i = 0; i < 10; i++) list.Add(random.Next(1, 10));
-    return Results.Ok(list);
+    return Results.NoContent();
 });
 
 app.Run();
