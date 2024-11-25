@@ -1,20 +1,24 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\dubov\\OneDrive\\Документы\\GitHub\\SPOProject\\Back\\Back.csproj": {}
+    "C:\\Users\\Артём\\OneDrive\\Документы\\GitHub\\SPOProject\\Back\\Back.csproj": {}
   },
   "projects": {
-    "C:\\Users\\dubov\\OneDrive\\Документы\\GitHub\\SPOProject\\Back\\Back.csproj": {
+    "C:\\Users\\Артём\\OneDrive\\Документы\\GitHub\\SPOProject\\Back\\Back.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\dubov\\OneDrive\\Документы\\GitHub\\SPOProject\\Back\\Back.csproj",
+        "projectUniqueName": "C:\\Users\\Артём\\OneDrive\\Документы\\GitHub\\SPOProject\\Back\\Back.csproj",
         "projectName": "Back",
-        "projectPath": "C:\\Users\\dubov\\OneDrive\\Документы\\GitHub\\SPOProject\\Back\\Back.csproj",
-        "packagesPath": "C:\\Users\\dubov\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\dubov\\OneDrive\\Документы\\GitHub\\SPOProject\\Back\\obj\\",
+        "projectPath": "C:\\Users\\Артём\\OneDrive\\Документы\\GitHub\\SPOProject\\Back\\Back.csproj",
+        "packagesPath": "C:\\Users\\Артём\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Артём\\OneDrive\\Документы\\GitHub\\SPOProject\\Back\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "D:\\Visual Studio Code\\Components\\NuGetPackages"
+        ],
         "configFilePaths": [
-          "C:\\Users\\dubov\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Артём\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -22,6 +26,7 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
