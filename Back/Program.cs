@@ -1,10 +1,13 @@
 using Back.Models;
 using Microsoft.EntityFrameworkCore;
+
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllersWithViews();
+
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
 builder.Services.AddDbContext<Context>(options => options.UseNpgsql(connectionString));
+
 var app = builder.Build();
 
 if (!app.Environment.IsDevelopment())
