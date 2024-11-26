@@ -29,13 +29,6 @@ app.MapControllerRoute(
 
 List<int> list = new List<int>();
 
-app.MapGet("/test", (Context db) => 
-{
-    db.Users.Add(new User{Name = "nikita", Surname = "dubov"});
-    db.SaveChanges();
-    return db.Users.ToList();
-});
-
 app.MapGet("kaka", () => 
 {
     Random random = new Random();
