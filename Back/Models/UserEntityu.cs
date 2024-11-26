@@ -1,4 +1,4 @@
-namespace dbtest.Models;
+namespace Back.Models;
 class User
 {
     public int Id { get; set; }
