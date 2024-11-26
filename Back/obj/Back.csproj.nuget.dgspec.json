@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Артём\\OneDrive\\Документы\\GitHub\\SPOProject\\back\\Back.csproj": {}
+    "C:\\Users\\Артём\\OneDrive\\Документы\\GitHub\\SPOProject\\Back\\Back.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Артём\\OneDrive\\Документы\\GitHub\\SPOProject\\back\\Back.csproj": {
+    "C:\\Users\\Артём\\OneDrive\\Документы\\GitHub\\SPOProject\\Back\\Back.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Артём\\OneDrive\\Документы\\GitHub\\SPOProject\\back\\Back.csproj",
+        "projectUniqueName": "C:\\Users\\Артём\\OneDrive\\Документы\\GitHub\\SPOProject\\Back\\Back.csproj",
         "projectName": "Back",
-        "projectPath": "C:\\Users\\Артём\\OneDrive\\Документы\\GitHub\\SPOProject\\back\\Back.csproj",
+        "projectPath": "C:\\Users\\Артём\\OneDrive\\Документы\\GitHub\\SPOProject\\Back\\Back.csproj",
         "packagesPath": "C:\\Users\\Артём\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Артём\\OneDrive\\Документы\\GitHub\\SPOProject\\back\\obj\\",
+        "outputPath": "C:\\Users\\Артём\\OneDrive\\Документы\\GitHub\\SPOProject\\Back\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "D:\\Visual Studio Code\\Components\\NuGetPackages"
@@ -49,6 +49,16 @@
       "frameworks": {
         "net8.0": {
           "targetAlias": "net8.0",
+          "dependencies": {
+            "Microsoft.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[9.0.0, )"
+            },
+            "Npgsql.EntityFrameworkCore.PostgreSQL": {
+              "target": "Package",
+              "version": "[9.0.1, )"
+            }
+          },
           "imports": [
             "net461",
             "net462",
