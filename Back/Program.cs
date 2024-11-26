@@ -1,10 +1,13 @@
 using Back.Models;
 using Microsoft.EntityFrameworkCore;
+
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllersWithViews();
+
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
 builder.Services.AddDbContext<Context>(options => options.UseNpgsql(connectionString));
+
 var app = builder.Build();
 
 if (!app.Environment.IsDevelopment())
@@ -25,6 +28,13 @@ app.MapControllerRoute(
     pattern: "{controller=Home}/{action=Index}/{id?}");
 
 List<int> list = new List<int>();
+
+app.MapGet("/test", (Context db) => 
+{
+    db.Users.Add(new User{Name = "nikita", Surname = "dubov"});
+    db.SaveChanges();
+    return db.Users.ToList();
+});
 
 app.MapGet("kaka", () => 
 {

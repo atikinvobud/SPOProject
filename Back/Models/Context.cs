@@ -4,7 +4,7 @@ namespace Back.Models;
 class Context : DbContext
 {
     public DbSet<User> Users { get; set; } = null!;
-    public Context(DbContextOptions<Context> options): base(options)
+    public Context(DbContextOptions<Context> options) : base(options)
     {
         Database.EnsureCreated();
     }
