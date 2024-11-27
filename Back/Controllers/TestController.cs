@@ -15,7 +15,6 @@ public class TestController : Controller
     [HttpGet]
     public IActionResult TestMethod()
     {
-       context.Users.Add(new User { Login = "vvvv", Password ="sss", RoleId =1});
         context.SaveChanges();
         return Ok(context.Users.ToList());
     }
