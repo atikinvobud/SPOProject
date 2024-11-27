@@ -1,1 +1,5 @@
 GET http://localhost:5234/kaka
+###
+Get http://localhost:5234/Test/TestMethod
+
+###
