@@ -1,6 +1,10 @@
 <script setup>
   import { ref, computed } from 'vue'
+  import { useRouter } from 'vue-router'
+
   import axios from 'axios'
+
+  const router = useRouter()
 
   const email = ref('')
   const password = ref('')
@@ -16,15 +20,18 @@
         password: password.value,
       }
       const { data } = await axios.get('https://54d7ea1c7c45f325.mokky.dev/signin', { params })
+
+      localStorage.setItem('id', JSON.stringify(data[0].id))
+      router.push({ name: 'personal-account' })
     } catch (err) {
-      console.log('Не найден, Бро...')
+      console.log(err)
       isError.value = true
     }
   }
 </script>
 
 <template>
-  <div class="form-window bg-white rounded-2xl mt-16 mx-auto px-12 py-10 text-center drop-shadow">
+  <div class="w-[464px] bg-white rounded-2xl mt-16 mx-auto px-12 py-10 text-center drop-shadow">
     <h3 class="text-2xl mb-7">Вход в аккаунт</h3>
     <form class="mb-6" @submit.prevent="handleSubmit">
       <div class="flex flex-col gap-11">
@@ -60,15 +67,3 @@
     </div>
   </div>
 </template>
-
-<style>
-  @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
-
-  .title {
-    font-size: 32px;
-  }
-
-  .form-window {
-    max-width: 464px;
-  }
-</style>

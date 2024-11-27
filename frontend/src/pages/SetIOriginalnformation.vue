@@ -1,11 +1,10 @@
 <script setup>
-  import axios from 'axios'
   import { ref, computed } from 'vue'
+  import { useRouter } from 'vue-router'
 
-  import { useRoute } from 'vue-router'
+  import axios from 'axios'
 
-  const route = useRoute()
-  const id = Number(route.params.id)
+  const router = useRouter()
 
   const surname = ref('')
   const name = ref('')
@@ -23,7 +22,7 @@
       dateOfBirth.value = `${arr[2]}.${arr[1]}.${arr[0]}`
 
       const obj = {
-        id: id,
+        id: localStorage.getItem('id'),
         surname: surname.value,
         name: name.value,
         gender: gender.value,
@@ -31,6 +30,9 @@
       }
 
       const { data } = await axios.post(`https://54d7ea1c7c45f325.mokky.dev/set-information`, obj)
+
+      router.push({ name: 'personal-account' })
+      return data
     } catch (err) {
       console.log(err)
     }
@@ -38,7 +40,7 @@
 </script>
 
 <template>
-  <div class="form-window bg-white rounded-2xl mt-16 mx-auto px-12 py-10 text-center drop-shadow">
+  <div class="w-[464px] bg-white rounded-2xl mt-16 mx-auto px-12 py-10 text-center drop-shadow">
     <h3 class="text-2xl mb-7">Введите данные</h3>
     <form class="mb-6" @submit.prevent="handleSubmit">
       <div class="flex flex-col gap-11">
@@ -62,7 +64,12 @@
           v-model="name"
           required
         />
-        <select class="rounded-lg text-xl bg-gray pl-4 py-3 border-[#D5D5D3]" v-model="gender">
+        <select
+          class="rounded-lg text-xl bg-gray pl-4 py-3 border-[#D5D5D3]"
+          name="gender"
+          required
+          v-model="gender"
+        >
           <option disabled value="">Пол</option>
           <option value="Мужской">Мужской</option>
           <option value="Женский">Женский</option>
