@@ -1,8 +1,9 @@
+using System.ComponentModel.DataAnnotations.Schema;
 namespace Back.Models;
-
 public class UserInfo
 {
     public int Id { get; set; }
+    [ForeignKey("Id")]
     public User? User{ get; set; }
     public required string Name { get; set; }
     public required string Surname{ get; set; }
