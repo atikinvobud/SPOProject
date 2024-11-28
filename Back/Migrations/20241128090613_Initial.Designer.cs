@@ -3,6 +3,7 @@ using System;
 using Back.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
@@ -11,9 +12,11 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace Back.Migrations
 {
     [DbContext(typeof(Context))]
-    partial class ContextModelSnapshot : ModelSnapshot
+    [Migration("20241128090613_Initial")]
+    partial class Initial
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -162,16 +165,11 @@ namespace Back.Migrations
                     b.Property<int>("TeamUsersId")
                         .HasColumnType("integer");
 
-                    b.Property<int?>("TournamentId")
-                        .HasColumnType("integer");
-
                     b.HasKey("Id");
 
                     b.HasIndex("StatusId");
 
                     b.HasIndex("TeamUsersId");
-
-                    b.HasIndex("TournamentId");
 
                     b.ToTable("Requests");
                 });
@@ -320,6 +318,9 @@ namespace Back.Migrations
                     b.Property<int>("NotificationId")
                         .HasColumnType("integer");
 
+                    b.Property<int>("RequestId")
+                        .HasColumnType("integer");
+
                     b.Property<int>("SportId")
                         .HasColumnType("integer");
 
@@ -332,6 +333,8 @@ namespace Back.Migrations
                     b.HasIndex("LocationId");
 
                     b.HasIndex("NotificationId");
+
+                    b.HasIndex("RequestId");
 
                     b.HasIndex("SportId");
 
@@ -357,17 +360,26 @@ namespace Back.Migrations
                     b.Property<int>("RoleId")
                         .HasColumnType("integer");
 
+                    b.Property<int>("UserInfoId")
+                        .HasColumnType("integer");
+
                     b.HasKey("Id");
 
                     b.HasIndex("RoleId");
+
+                    b.HasIndex("UserInfoId")
+                        .IsUnique();
 
                     b.ToTable("Users");
                 });
 
             modelBuilder.Entity("Back.Models.UserInfo", b =>
                 {
-                    b.Property<int>("UserId")
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
                     b.Property<DateOnly>("Birthday")
                         .HasColumnType("date");
@@ -386,7 +398,7 @@ namespace Back.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.HasKey("UserId");
+                    b.HasKey("Id");
 
                     b.HasIndex("CityId");
 
@@ -398,12 +410,12 @@ namespace Back.Migrations
                     b.Property<int>("FavouriteSportsId")
                         .HasColumnType("integer");
 
-                    b.Property<int>("UserInfosUserId")
+                    b.Property<int>("UserInfosesId")
                         .HasColumnType("integer");
 
-                    b.HasKey("FavouriteSportsId", "UserInfosUserId");
+                    b.HasKey("FavouriteSportsId", "UserInfosesId");
 
-                    b.HasIndex("UserInfosUserId");
+                    b.HasIndex("UserInfosesId");
 
                     b.ToTable("FavouriteSportUserInfo");
                 });
@@ -448,15 +460,9 @@ namespace Back.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Back.Models.Tournament", "Tournament")
-                        .WithMany("Requests")
-                        .HasForeignKey("TournamentId");
-
                     b.Navigation("Status");
 
                     b.Navigation("TeamUsers");
-
-                    b.Navigation("Tournament");
                 });
 
             modelBuilder.Entity("Back.Models.TeamUsers", b =>
@@ -504,6 +510,12 @@ namespace Back.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("Back.Models.Request", "Request")
+                        .WithMany()
+                        .HasForeignKey("RequestId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("Back.Models.Sport", "Sport")
                         .WithMany("Tournaments")
                         .HasForeignKey("SportId")
@@ -518,6 +530,8 @@ namespace Back.Migrations
 
                     b.Navigation("Notification");
 
+                    b.Navigation("Request");
+
                     b.Navigation("Sport");
                 });
 
@@ -529,7 +543,15 @@ namespace Back.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("Back.Models.UserInfo", "UserInfo")
+                        .WithOne("User")
+                        .HasForeignKey("Back.Models.User", "UserInfoId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.Navigation("Role");
+
+                    b.Navigation("UserInfo");
                 });
 
             modelBuilder.Entity("Back.Models.UserInfo", b =>
@@ -540,15 +562,7 @@ namespace Back.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Back.Models.User", "User")
-                        .WithOne("UserInfo")
-                        .HasForeignKey("Back.Models.UserInfo", "UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.Navigation("City");
-
-                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("FavouriteSportUserInfo", b =>
@@ -561,7 +575,7 @@ namespace Back.Migrations
 
                     b.HasOne("Back.Models.UserInfo", null)
                         .WithMany()
-                        .HasForeignKey("UserInfosUserId")
+                        .HasForeignKey("UserInfosesId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
@@ -623,14 +637,9 @@ namespace Back.Migrations
                     b.Navigation("Requests");
                 });
 
-            modelBuilder.Entity("Back.Models.Tournament", b =>
+            modelBuilder.Entity("Back.Models.UserInfo", b =>
                 {
-                    b.Navigation("Requests");
-                });
-
-            modelBuilder.Entity("Back.Models.User", b =>
-                {
-                    b.Navigation("UserInfo");
+                    b.Navigation("User");
                 });
 #pragma warning restore 612, 618
         }

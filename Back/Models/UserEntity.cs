@@ -1,8 +1,9 @@
+using System.ComponentModel.DataAnnotations;
+
 namespace Back.Models;
 public class User
 {
     public int Id { get; set; }
-    public required int UserInfoId{ get; set; }
     public UserInfo? UserInfo{ get; set; }
     public required string Login { get; set; }
     public required string Password { get; set; }
