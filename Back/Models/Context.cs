@@ -3,7 +3,6 @@ using Microsoft.EntityFrameworkCore; // Для DbContext, ModelBuilder, DbSet и
 namespace Back.Models;
  public class Context : DbContext
 {
-    /*
     public DbSet<City> Cities { get; set; } = null!;
     public DbSet<Date> Dates { get; set; } = null!;
     public DbSet<FavouriteSport> FavouriteSports { get; set; } = null!;
@@ -19,8 +18,7 @@ namespace Back.Models;
     public DbSet<Tournament> Tournaments { get; set; } = null!;
     public DbSet<User> Users { get; set; } = null!;
     public DbSet<UserInfo> UserInfos { get; set; } = null!;
-*/
-    public DbSet<User> Users { get; set; } = null!;
+
     public Context(DbContextOptions<Context> options) : base(options)
     {
         Database.EnsureCreated();

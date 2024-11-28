@@ -7,4 +7,6 @@ public class Request
     public required DateOnly Date{ get; set;}
     public int TeamUsersId { get; set;}
     public TeamUsers? TeamUsers{ get; set;}
+    public int TournamentId { get; set;}
+    public Tournament? Tournament{ get; set;}
 }
