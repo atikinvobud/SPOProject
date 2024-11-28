@@ -1,8 +1,8 @@
 <script setup>
   import { computed, ref } from 'vue'
+  import { useRouter } from 'vue-router'
 
   import axios from 'axios'
-  import { useRouter } from 'vue-router'
 
   const router = useRouter()
 
@@ -28,7 +28,8 @@
 
       const { data } = await axios.post(`https://54d7ea1c7c45f325.mokky.dev/signin`, obj)
 
-      router.push({ name: 'set-information', params: { id: data.id } })
+      localStorage.setItem('id', JSON.stringify(data[0].id))
+      router.push({ name: 'set-information' })
     } catch (err) {
       console.log(err)
       isError.value = true
@@ -37,7 +38,7 @@
 </script>
 
 <template>
-  <div class="form-window bg-white rounded-2xl mt-16 mx-auto px-12 py-10 text-center drop-shadow">
+  <div class="w-[464px] bg-white rounded-2xl mt-16 mx-auto px-12 py-10 text-center drop-shadow">
     <h3 class="text-2xl mb-7">Регистрация</h3>
     <form class="mb-6" @submit.prevent="handleSubmit">
       <div class="flex flex-col gap-11">
