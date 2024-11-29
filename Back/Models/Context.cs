@@ -25,10 +25,22 @@ namespace Back.Models;
         Database.EnsureCreated();
     }
 
-
-
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
+        modelBuilder.ApplyConfiguration(new CityConfiguration());
+        modelBuilder.ApplyConfiguration(new DateConfiguration());
+        modelBuilder.ApplyConfiguration(new FavouriteSportConfiguration());
+        modelBuilder.ApplyConfiguration(new FormatConfiguration());
+        modelBuilder.ApplyConfiguration(new LocationConfiguration());
+        modelBuilder.ApplyConfiguration(new NotificationConfiguration());
+        modelBuilder.ApplyConfiguration(new RequestConfiguration());
+        modelBuilder.ApplyConfiguration(new RoleConfiguration());
+        modelBuilder.ApplyConfiguration(new SportConfiguration());
+        modelBuilder.ApplyConfiguration(new StatusConfiguration());
+        modelBuilder.ApplyConfiguration(new TeamConfiguration());
+        modelBuilder.ApplyConfiguration(new TeamUsersConfiguration());
+        modelBuilder.ApplyConfiguration(new TournamentConfiguration());
+        modelBuilder.ApplyConfiguration(new UserConfiguration());
         modelBuilder.ApplyConfiguration(new UserInfoConfiguration());
 
         base.OnModelCreating(modelBuilder);

@@ -11,7 +11,15 @@ public class UserInfoConfiguration : IEntityTypeConfiguration<UserInfo>
         builder.HasKey(ui => ui.UserId);
 
         builder.HasOne(ui => ui.User)
-        .WithOne(u => u.UserInfo)
-        .HasForeignKey<UserInfo>(ui => ui.UserId);
+               .WithOne(u => u.UserInfo)
+               .HasForeignKey<UserInfo>(ui => ui.UserId);
+
+        builder.HasOne(ui => ui.City)
+               .WithMany(c => c.UserInfos)
+               .HasForeignKey(ui => ui.CityId);
+
+        builder.HasMany(ui => ui.FavouriteSports)
+               .WithMany(fs => fs.UserInfos)
+               .UsingEntity(ui => ui.ToTable("ui-fs"));
     }
 }

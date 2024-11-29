@@ -4,7 +4,6 @@ namespace Back.Models;
 
 public class UserInfo
 {
-    [Key]
     public int UserId {get; set; }
     public User? User{ get; set; }
     public required string Name { get; set; }

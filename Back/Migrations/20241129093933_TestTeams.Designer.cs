@@ -3,6 +3,7 @@ using System;
 using Back.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
@@ -11,9 +12,11 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace Back.Migrations
 {
     [DbContext(typeof(Context))]
-    partial class ContextModelSnapshot : ModelSnapshot
+    [Migration("20241129093933_TestTeams")]
+    partial class TestTeams
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -162,7 +165,7 @@ namespace Back.Migrations
                     b.Property<int>("TeamUsersId")
                         .HasColumnType("integer");
 
-                    b.Property<int>("TournamentId")
+                    b.Property<int?>("TournamentId")
                         .HasColumnType("integer");
 
                     b.HasKey("Id");
@@ -325,15 +328,13 @@ namespace Back.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("DateId")
-                        .IsUnique();
+                    b.HasIndex("DateId");
 
                     b.HasIndex("FormatId");
 
                     b.HasIndex("LocationId");
 
-                    b.HasIndex("NotificationId")
-                        .IsUnique();
+                    b.HasIndex("NotificationId");
 
                     b.HasIndex("SportId");
 
@@ -452,9 +453,7 @@ namespace Back.Migrations
 
                     b.HasOne("Back.Models.Tournament", "Tournament")
                         .WithMany("Requests")
-                        .HasForeignKey("TournamentId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("TournamentId");
 
                     b.Navigation("Status");
 
@@ -485,8 +484,8 @@ namespace Back.Migrations
             modelBuilder.Entity("Back.Models.Tournament", b =>
                 {
                     b.HasOne("Back.Models.Date", "Date")
-                        .WithOne("Tournament")
-                        .HasForeignKey("Back.Models.Tournament", "DateId")
+                        .WithMany()
+                        .HasForeignKey("DateId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -503,8 +502,8 @@ namespace Back.Migrations
                         .IsRequired();
 
                     b.HasOne("Back.Models.Notification", "Notification")
-                        .WithOne("Tournament")
-                        .HasForeignKey("Back.Models.Tournament", "NotificationId")
+                        .WithMany()
+                        .HasForeignKey("NotificationId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -592,11 +591,6 @@ namespace Back.Migrations
                     b.Navigation("UserInfos");
                 });
 
-            modelBuilder.Entity("Back.Models.Date", b =>
-                {
-                    b.Navigation("Tournament");
-                });
-
             modelBuilder.Entity("Back.Models.Format", b =>
                 {
                     b.Navigation("Tournaments");
@@ -605,11 +599,6 @@ namespace Back.Migrations
             modelBuilder.Entity("Back.Models.Location", b =>
                 {
                     b.Navigation("Tournaments");
-                });
-
-            modelBuilder.Entity("Back.Models.Notification", b =>
-                {
-                    b.Navigation("Tournament");
                 });
 
             modelBuilder.Entity("Back.Models.Role", b =>
