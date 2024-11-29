@@ -12,8 +12,8 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace Back.Migrations
 {
     [DbContext(typeof(Context))]
-    [Migration("20241128151727_NewTest")]
-    partial class NewTest
+    [Migration("20241129072631_NotACities")]
+    partial class NotACities
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -429,7 +429,7 @@ namespace Back.Migrations
             modelBuilder.Entity("Back.Models.Location", b =>
                 {
                     b.HasOne("Back.Models.City", "City")
-                        .WithMany()
+                        .WithMany("Locations")
                         .HasForeignKey("CityId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -586,6 +586,8 @@ namespace Back.Migrations
 
             modelBuilder.Entity("Back.Models.City", b =>
                 {
+                    b.Navigation("Locations");
+
                     b.Navigation("UserInfos");
                 });
 

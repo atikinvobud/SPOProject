@@ -4,7 +4,8 @@ using Microsoft.EntityFrameworkCore;
 namespace Back.Models;
  public class Context : DbContext
 {
-    public DbSet<City> Cities { get; set; } = null!;
+    // Это говно не работает с другим названием
+    public DbSet<City> NotACities { get; set; } = null!;
     public DbSet<Date> Dates { get; set; } = null!;
     public DbSet<FavouriteSport> FavouriteSports { get; set; } = null!;
     public DbSet<Format> Formats { get; set; } = null!;
@@ -23,6 +24,7 @@ namespace Back.Models;
     {
         Database.EnsureCreated();
     }
+
 
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)

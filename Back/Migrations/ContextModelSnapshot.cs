@@ -426,7 +426,7 @@ namespace Back.Migrations
             modelBuilder.Entity("Back.Models.Location", b =>
                 {
                     b.HasOne("Back.Models.City", "City")
-                        .WithMany()
+                        .WithMany("Locations")
                         .HasForeignKey("CityId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -583,6 +583,8 @@ namespace Back.Migrations
 
             modelBuilder.Entity("Back.Models.City", b =>
                 {
+                    b.Navigation("Locations");
+
                     b.Navigation("UserInfos");
                 });
 
