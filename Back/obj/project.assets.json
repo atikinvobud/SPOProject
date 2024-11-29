@@ -2908,11 +2908,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Артём\\OneDrive\\Документы\\GitHub\\SPOProject\\Back\\Back.csproj",
+      "projectUniqueName": "C:\\Users\\Артём\\OneDrive\\Документы\\GitHub\\SPOProject\\back\\Back.csproj",
       "projectName": "Back",
-      "projectPath": "C:\\Users\\Артём\\OneDrive\\Документы\\GitHub\\SPOProject\\Back\\Back.csproj",
+      "projectPath": "C:\\Users\\Артём\\OneDrive\\Документы\\GitHub\\SPOProject\\back\\Back.csproj",
       "packagesPath": "C:\\Users\\Артём\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Артём\\OneDrive\\Документы\\GitHub\\SPOProject\\Back\\obj\\",
+      "outputPath": "C:\\Users\\Артём\\OneDrive\\Документы\\GitHub\\SPOProject\\back\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "D:\\Visual Studio Code\\Components\\NuGetPackages"
@@ -2988,5 +2988,13 @@
         "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.404/PortableRuntimeIdentifierGraph.json"
       }
     }
-  }
+  },
+  "logs": [
+    {
+      "code": "NU1900",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Произошла ошибка при получении данных уязвимости пакета: Не удалось загрузить индекс службы для источника https://api.nuget.org/v3/index.json."
+    }
+  ]
 }

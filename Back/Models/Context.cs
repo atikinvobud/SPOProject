@@ -20,6 +20,10 @@ namespace Back.Models;
     public DbSet<Tournament> Tournaments { get; set; } = null!;
     public DbSet<User> Users { get; set; } = null!;
     public DbSet<UserInfo> UserInfos { get; set; } = null!;
+<<<<<<< HEAD
+=======
+
+>>>>>>> e849b02351b97ec4425187c5143ec42a36389f3a
     public Context(DbContextOptions<Context> options) : base(options)
     {
         Database.EnsureCreated();

@@ -15,8 +15,16 @@ public class TestController : Controller
     [HttpGet]
     public IActionResult TestMethod()
     {
+        var sport = new Sport
+            {
+                Name = "Football",
+                Description = "A popular team sport played worldwide.",
+                Tournaments = new List<Tournament>() // Если потребуется добавить связанные данные
+            };
+
+        context.Sports.Add(sport);
         context.SaveChanges();
-        return Ok(context.Users.ToList());
+        return Ok(context.Sports.ToList());
     }
     public IActionResult Index()
     {

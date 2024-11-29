@@ -4,7 +4,6 @@ using Back.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 #nullable disable
 
@@ -16,6 +15,7 @@ namespace Back.Migrations
         protected override void BuildModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
+<<<<<<< HEAD
             modelBuilder
                 .HasAnnotation("ProductVersion", "9.0.0")
                 .HasAnnotation("Relational:MaxIdentifierLength", 63);
@@ -634,6 +634,9 @@ namespace Back.Migrations
                 {
                     b.Navigation("UserInfo");
                 });
+=======
+            modelBuilder.HasAnnotation("ProductVersion", "9.0.0");
+>>>>>>> e849b02351b97ec4425187c5143ec42a36389f3a
 #pragma warning restore 612, 618
         }
     }
