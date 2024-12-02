@@ -9,7 +9,6 @@
 
 html {
   box-sizing: border-box;
-
 }
 
 body {
@@ -18,4 +17,14 @@ body {
   font-weight: 500;
   background-color: rgba(243, 244, 246, 0.99);
   color: var(--main-color);
+}
+
+@layer components {
+  .input-field {
+    @apply rounded-lg bg-gray pl-4 py-2.5 border-[#D5D5D3];
+  }
+
+  .line {
+    @apply border-t-2 border-dark-blue opacity-[.68];
+  }
 }

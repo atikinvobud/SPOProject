@@ -4,6 +4,8 @@
 
   import axios from 'axios'
 
+  import SubmitFormButton from '@/components/SubmitFormButton.vue'
+
   const router = useRouter()
 
   const email = ref('')
@@ -19,10 +21,10 @@
         email: email.value,
         password: password.value,
       }
-      const { data } = await axios.get('https://54d7ea1c7c45f325.mokky.dev/signin', { params })
+      const { data } = await axios.get('https://54d7ea1c7c45f325.mokky.dev/users', { params })
 
       localStorage.setItem('id', JSON.stringify(data[0].id))
-      router.push({ name: 'personal-account' })
+      router.push({ name: 'PersonalAccount' })
     } catch (err) {
       console.log(err)
       isError.value = true
@@ -31,12 +33,12 @@
 </script>
 
 <template>
-  <div class="w-[464px] bg-white rounded-2xl mt-16 mx-auto px-12 py-10 text-center drop-shadow">
-    <h3 class="text-2xl mb-7">Вход в аккаунт</h3>
-    <form class="mb-6" @submit.prevent="handleSubmit">
-      <div class="flex flex-col gap-11">
+  <div>
+    <h3 class="text-xl mb-7">Вход в аккаунт</h3>
+    <form @submit.prevent="handleSubmit">
+      <div class="flex flex-col gap-5">
         <input
-          class="rounded-lg text-xl bg-gray pl-4 py-3 border-[#D5D5D3]"
+          class="rounded-lg bg-gray pl-4 py-2.5 border-[#D5D5D3]"
           type="email"
           name="email"
           placeholder="Почта"
@@ -44,7 +46,7 @@
           v-model="email"
         />
         <input
-          class="rounded-lg text-xl bg-gray pl-4 py-3 border-[#D5D5D3]"
+          class="rounded-lg bg-gray pl-4 py-2.5 border-[#D5D5D3]"
           type="password"
           name="password"
           placeholder="Пароль"
@@ -52,18 +54,16 @@
           v-model="password"
         />
       </div>
-      <p v-if="isError" class="text-left text-red mt-3">Неверная почта или пароль</p>
-      <button
-        :disabled="!isDataEntered"
-        class="bg-blue disabled:opacity-60 enabled:hover:bg-[#004EC3] text-white text-xl rounded-xl py-3 w-60 mx-auto transition mt-7"
-        type="submit"
-      >
-        Войти
-      </button>
+      <p v-if="isError" class="text-left text-red mt-2">Неверная почта или пароль</p>
+      <SubmitFormButton title="Вход" :isDisabled="!isDataEntered" />
     </form>
-    <div class="flex flex-col gap-4 text-left font-medium text-light-blue">
-      <p>Забыли адрес электронной почты?</p>
-      <router-link :to="{ name: 'signup' }"><p>Регистрация</p></router-link>
-    </div>
+    <p class="text-left font-medium text-light-blue mt-5">Забыли пароль?</p>
+    <router-link :to="{ name: 'Register' }">
+      <button
+        class="bg-[#31DC65] hover:bg-[#12CC49] rounded-xl text-white text-lg py-2.5 w-full transition mt-[14px]"
+      >
+        Регистрация
+      </button>
+    </router-link>
   </div>
 </template>
