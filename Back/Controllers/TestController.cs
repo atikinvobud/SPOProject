@@ -18,6 +18,24 @@ public class TestController : Controller
         context.SaveChanges();
         return Ok(context.Users.ToList());
     }
+
+    [HttpGet]
+    public IActionResult DoThings()
+    {
+        context.SaveChanges();
+        return Ok(context.NotACities.ToList());
+    }
+
+    [HttpPost]
+    public IActionResult DoThings1()
+    {
+        context.NotACities.Add(new City
+        {
+            Name = "Москва"
+        });
+        context.SaveChanges();
+        return Ok(context.NotACities.ToList());
+    }
     public IActionResult Index()
     {
         return View();

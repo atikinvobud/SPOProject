@@ -3,3 +3,7 @@ GET http://localhost:5234/kaka
 Get http://localhost:5234/Test/TestMethod
 
 ###
+GET http://localhost:5234/Test/DoThings
+###
+
+POST http://localhost:5234/Test/DoThings1
