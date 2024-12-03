@@ -3,6 +3,16 @@ using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
+builder.Services.AddCors(options =>
+   {
+       options.AddPolicy("AllowAll", policy =>
+       {
+           policy.WithOrigins("http://localhost:5235")  // Адрес вашего фронтенда
+                 .AllowAnyHeader()
+                 .AllowAnyMethod();
+       });
+   });
+
 builder.Services.AddControllersWithViews();
 
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
