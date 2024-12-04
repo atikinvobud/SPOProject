@@ -1,41 +1,10 @@
 <script setup>
   import { ref, reactive, computed } from 'vue'
+  import { useRouter } from 'vue-router'
 
   import axios from 'axios'
-  // class SetDateError extends Error {
-  //   constructor(message) {
-  //     super(message)
-  //     this.name = 'SetDateError'
-  //   }
-  // }
-  const isError = reactive({
-    status: false,
-    message: '',
-  })
 
-  // const now = new Date()
-  // function getCurrentDateTime(now) {
-  //   function addZero(str) {
-  //     if (str.length == 1) {
-  //       return '0' + str
-  //     }
-  //     return str
-  //   }
-
-  //   const year = String(now.getFullYear())
-  //   const month = addZero(String(now.getMonth() + 1))
-  //   const day = addZero(String(now.getDate()))
-  //   const hours = addZero(String(now.getHours() + 1))
-
-  //   const date = `${year}-${month}-${day}`
-  //   const datetime = `${date}T${hours}:00`
-
-  //   return [date, datetime]
-  // }
-
-  // const [currentDate, currentDateTime] = getCurrentDateTime(now)
-
-  const now = new Date()
+  const router = useRouter()
 
   const tournamentInfo = reactive({
     name: '',
@@ -62,6 +31,7 @@
     return `${year}-${month}-${day}T${hours}:${minutes}`
   }
 
+  const now = new Date()
   const today = ref(toLocalISOString(now).split('T')[0])
   const nowString = ref(toLocalISOString(now).slice(0, 16))
 
@@ -85,21 +55,6 @@
   })
 
   const handleSubmit = () => {
-    // try {
-    //   if (tournamentInfo.startTime > tournamentInfo.endTime) {
-    //     throw new SetDateError('Дата начала турнира наступет позже конца турнира')
-    //   } else if (tournamentInfo.registrationTime.slice(0, 10) >= tournamentInfo.startTime) {
-    //     throw new SetDateError('Дата регистрации турнира наступает позже начала турнира')
-    //   } else {
-    //     isError.status = false
-    //     isError.message = ''
-    //   }
-    // } catch (err) {
-    //   if (err instanceof SetDateError) {
-    //     isError.status = true
-    //     isError.message = err.message
-    //   }
-    // }
     try {
       const obj = {
         ...tournamentInfo,
@@ -109,6 +64,7 @@
 
       const { data } = axios.post(`https://54d7ea1c7c45f325.mokky.dev/tournaments`, obj)
 
+      router.push({ name: 'PersonalAccount' })
       return data
     } catch (err) {
       console.log(err)
@@ -229,7 +185,6 @@
             />
           </div>
         </section>
-        <p v-if="isError.status" class="text-red mt-2">{{ isError.message }}</p>
         <button
           :disabled="!isDataEntered"
           class="self-center bg-blue text-white rounded-[18px] py-3 px-4 min-w-[200px] transition disabled:opacity-60 disabled-cursor-no-drop enabled:hover:bg-[#004EC3] mt-7"
