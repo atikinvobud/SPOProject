@@ -17,16 +17,14 @@
 
   const handleSubmit = async () => {
     try {
-    //   const params = {
-    //     email: email.value,
-    //     password: password.value,
-    //   }
-    //   const { data } = await axios.get('https://54d7ea1c7c45f325.mokky.dev/users', { params })
+      const params = {
+        email: email.value,
+        password: password.value,
+      }
+      const { data } = await axios.get('https://54d7ea1c7c45f325.mokky.dev/users', { params })
 
-    //   localStorage.setItem('id', JSON.stringify(data[0].id))
-    //   router.push({ name: 'PersonalAccount' })
-      const {data} = await axios.get('http://localhost:5234/Test/DoThings')
-      console.log(data)
+      localStorage.setItem('id', JSON.stringify(data[0].id))
+      router.push({ name: 'PersonalAccount' })
     } catch (err) {
       console.log(err)
       isError.value = true
