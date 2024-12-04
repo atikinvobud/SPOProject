@@ -15,3 +15,14 @@ Content-Type: application/json
     "login": "TestAccountTwink",
     "password": "TestPassword"
 }
+###
+POST  http://localhost:5234/auth/set-information
+Content-Type: application/json
+
+{
+    "id": 1,
+    "surname": "Dmitriev",
+    "name": "Artyom",
+    "gender": "male",
+    "dateOfBirth": "2120-10-11"
+}

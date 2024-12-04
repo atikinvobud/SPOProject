@@ -1,5 +1,6 @@
 using Back.Models;
 using Microsoft.EntityFrameworkCore;
+using Back.Converters;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -16,6 +17,7 @@ builder.Services.AddControllersWithViews()
     .AddJsonOptions(options =>
     {
         options.JsonSerializerOptions.PropertyNamingPolicy = null; // Не изменяет регистр
+        options.JsonSerializerOptions.Converters.Add(new DateOnlyConverter());
     });
 
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");

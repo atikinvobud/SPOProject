@@ -2,10 +2,12 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Back.DTO;
-using Back.DTO.UsersDTO;
-using Back.Models;
 using Microsoft.AspNetCore.Mvc;
+using Back.DTO;
+using Back.Models;
+using Back.DTO.UsersDTO;
+using Back.DTO.UserInfosDTO;
+
 
 namespace Back.Controllers;
 
@@ -35,5 +37,18 @@ public class AuthorizationController : ControllerBase
         {
             return Conflict();
         }
+    }
+    [HttpPost("set-information")]
+    public IActionResult SetInformation( [FromBody] UserInfoDTO userInfoDTO)
+    {
+        UserInfo userInfo =userInfoDTO.ToEntity();
+        userInfo.CityId = 1;
+        if(context.Users.Where( u => u.Id == userInfo.UserId).ToList().Count ==1)
+        {
+            context.UserInfos.Add(userInfo);
+            context.SaveChanges();
+            return StatusCode(201);
+        }
+        else return NotFound();
     }
 }

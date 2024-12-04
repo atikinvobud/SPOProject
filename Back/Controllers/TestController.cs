@@ -16,14 +16,15 @@ public class TestController : Controller
     public IActionResult TestMethod()
     {
         context.SaveChanges();
-        return Ok(context.Users.ToList());
+        return Ok(context.UserInfos.ToList());
     }
 
     [HttpGet]
     public IActionResult DoThings()
     {
         context.SaveChanges();
-        return Ok(context.NotACities.ToList());
+        //return Ok(context.NotACities.ToList());
+        return Ok(context.UserInfos.ToList());
     }
 
     [HttpPost]
