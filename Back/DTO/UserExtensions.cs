@@ -3,10 +3,17 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Back.DTO
+using Back.DTO.UsersDTO;
+using Back.Models;
+namespace Back.DTO;
+public static class UserExtensions
 {
-    public class UserExtensions
+    public static User ToEntity(this UserDTO userDTO)
     {
-        
+        return new User()
+        {
+            Login = userDTO.login!,
+            Password = userDTO.password!
+        };
     }
 }

@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Back.DTO.UserDTOs;
+namespace Back.DTO.UsersDTO;
 
 public record UserDTO
 {
-    string? login;
-    string? password;
+    public string? login { get; set; }
+    public string? password { get; set; }
 }

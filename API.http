@@ -7,3 +7,11 @@ GET http://localhost:5234/Test/DoThings
 ###
 
 POST http://localhost:5234/Test/DoThings1
+###
+POST http://localhost:5234/Authorization/Register
+Content-Type: application/json
+
+{
+    "login": "TestAccountTwink",
+    "password": "TestPassword"
+}
