@@ -10,7 +10,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace Back.Controllers;
 
 [ApiController]
-[Route("Authorization")]
+[Route("auth")]
 public class AuthorizationController : ControllerBase
 {
     private readonly Context context;
@@ -20,7 +20,7 @@ public class AuthorizationController : ControllerBase
         this.context = context;
     }
 
-    [HttpPost("Register")]
+    [HttpPost("register")]
     public IActionResult Register([FromBody] UserDTO userDTO)
     {
         User user = userDTO.ToEntity();

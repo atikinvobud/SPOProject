@@ -8,7 +8,7 @@ GET http://localhost:5234/Test/DoThings
 
 POST http://localhost:5234/Test/DoThings1
 ###
-POST http://localhost:5234/Authorization/Register
+POST http://localhost:5234/auth/register
 Content-Type: application/json
 
 {
