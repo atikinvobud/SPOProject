@@ -12,7 +12,7 @@ public static class UserExtensions
     {
         return new User()
         {
-            Login = userDTO.login!,
+            Login = userDTO.email!,
             Password = userDTO.password!
         };
     }

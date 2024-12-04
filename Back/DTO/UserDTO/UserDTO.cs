@@ -7,6 +7,6 @@ namespace Back.DTO.UsersDTO;
 
 public record UserDTO
 {
-    public string? login { get; set; }
+    public string? email { get; set; }
     public string? password { get; set; }
 }
