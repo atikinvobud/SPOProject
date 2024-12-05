@@ -28,7 +28,7 @@
         password: password.value,
       }
 
-      const { data } = await axios.post(`https://54d7ea1c7c45f325.mokky.dev/users`, obj)
+      const { data } = await axios.post(`http://localhost:5234/auth/register`, obj)
 
       localStorage.setItem('id', JSON.stringify(data.id))
       router.push({ name: 'SetInformation' })

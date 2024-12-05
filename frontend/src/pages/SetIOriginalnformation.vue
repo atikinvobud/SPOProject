@@ -31,7 +31,7 @@
         ...personalInfo,
       }
 
-      const { data } = await axios.post(`https://54d7ea1c7c45f325.mokky.dev/users-info`, obj)
+      const { data } = await axios.post(`http://localhost:5234/auth/set-information`, obj)
 
       router.push({ name: 'PersonalAccount' })
       return data
