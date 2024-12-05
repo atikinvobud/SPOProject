@@ -31,7 +31,8 @@ public class AuthorizationController : ControllerBase
         {
             context.Users.Add(user);
             context.SaveChanges();
-            return Ok(user.Id);
+            var jsonData =new {id = user.Id };
+            return Ok(jsonData);
         }
         else
         {
