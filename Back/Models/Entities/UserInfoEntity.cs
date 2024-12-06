@@ -13,4 +13,5 @@ public class UserInfo
     public City? City { get; set; }
     public List<FavouriteSport> FavouriteSports{ get; set; } = [];
     public string? Description { get; set; }
+    public required string? Gender { get; set; }
 }

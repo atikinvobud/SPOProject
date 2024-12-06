@@ -19,12 +19,10 @@ public class TestController : Controller
         return Ok(context.UserInfos.ToList());
     }
 
-    [HttpGet]
+    [HttpPost]
     public IActionResult DoThings()
     {
-        context.SaveChanges();
-        //return Ok(context.NotACities.ToList());
-        return Ok(context.Users.ToList());
+        return Ok();
     }
 
     [HttpPost]

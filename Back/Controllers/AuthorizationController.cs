@@ -44,7 +44,7 @@ public class AuthorizationController : ControllerBase
     {
         UserInfo userInfo = userInfoDTO.ToEntity();
         userInfo.CityId = 1;
-        if(context.Users.Where( u => u.Id == userInfo.UserId).ToList().Count ==1)
+        if(context.Users.Where(u => u.Id == userInfo.UserId).ToList().Count ==1)
         {
             context.UserInfos.Add(userInfo);
             context.SaveChanges();
@@ -52,13 +52,14 @@ public class AuthorizationController : ControllerBase
         }
         else return NotFound();
     }
+    
     [HttpGet("login")]
-    public IActionResult AuthorizeUser([FromBody] UserDTO userDTO)
+    public IActionResult AuthorizeUser([FromQuery] string email, [FromQuery] string password)
     {
-        var User = context.Users.Where(u => u.Login == userDTO.email).ToList();
+        var User = context.Users.Where(u => u.Login == email).ToList();
         if(User.Count == 1)
         {
-            if(User[0].Password == userDTO.password)
+            if(User[0].Password == password)
             {
                 var jsonData = new {id = User[0].Id};
                 return Ok(jsonData);
@@ -66,4 +67,5 @@ public class AuthorizationController : ControllerBase
         }
         return NotFound();
     }
+    
 }

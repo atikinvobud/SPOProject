@@ -3,7 +3,7 @@ GET http://localhost:5234/kaka
 Get http://localhost:5234/Test/TestMethod
 
 ###
-GET http://localhost:5234/Test/DoThings
+POST http://localhost:5234/Test/DoThings
 ###
 
 POST http://localhost:5234/Test/DoThings1
@@ -16,7 +16,7 @@ Content-Type: application/json
     "password": "TestPassword"
 }
 ###
-POST  http://localhost:5234/auth/set-information
+POST http://localhost:5234/auth/set-information
 Content-Type: application/json
 
 {
@@ -25,4 +25,20 @@ Content-Type: application/json
     "name": "Artyom",
     "gender": "male",
     "dateOfBirth": "2120-10-11"
+}
+###
+GET http://localhost:5234/personal-account/6
+###
+PUT http://localhost:5234/personal-account/edit
+Content-Type: application/json
+
+{
+    "id": 6,
+    "surname": "Dmitriev",
+    "name": "Artyom",
+    "gender": "male",
+    "description": "Бутстрап говно снова",
+    "cityId": 1,
+    "dateOfBirth": "2005-08-31",
+    "favouriteSportsId": [2]
 }
