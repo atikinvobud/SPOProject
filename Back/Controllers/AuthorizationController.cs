@@ -52,4 +52,18 @@ public class AuthorizationController : ControllerBase
         }
         else return NotFound();
     }
+    [HttpGet("login")]
+    public IActionResult AuthorizeUser([FromBody] UserDTO userDTO)
+    {
+        var User =context.Users.Where(u => u.Login == userDTO.email).ToList();
+        if(User.Count ==1 )
+        {
+            if(User[0].Password == userDTO.password)
+            {
+                var jsonData =new {id = User[0].Id};
+                return Ok(jsonData);
+            }
+        }
+        return NotFound();
+    }
 }
