@@ -5,13 +5,34 @@
 
   const personalInfo = ref({})
 
+  const calculateAge = (birthDate) => {
+    const today = new Date()
+    const birth = new Date(birthDate)
+
+    let age = today.getFullYear() - birth.getFullYear()
+
+    const monthDifference = today.getMonth() - birth.getMonth()
+    if (monthDifference < 0 || (monthDifference === 0 && today.getDate() < birth.getDate())) {
+      age--
+    }
+
+    return age
+  }
+
   const fetchPersonalInfo = async () => {
     try {
       const id = localStorage.getItem('id')
       const { data } = await axios.get(`https://54d7ea1c7c45f325.mokky.dev/users-info/${id}`)
 
-      personalInfo.value = data
-      console.log(personalInfo.value)
+      personalInfo.value = {
+        surname: data.surname,
+        name: data.name,
+        gender: data.gender,
+        age: calculateAge(data.dateOfBirth),
+        city: data.city,
+        favoriteSports: data.favoriteSports ? data.favoriteSports.join(', ') : 'Пусто',
+        description: data.description ? data.description : 'Пусто',
+      }
     } catch (err) {
       console.log(err)
     }
@@ -50,7 +71,7 @@
         </div>
         <div class="flex flex-col gap-1">
           <span class="opacity-[.68]">О себе:</span>
-          <span class="text-sm">Люблю футбол и настольный теннис</span>
+          <span class="text-sm">{{ personalInfo.description }}</span>
         </div>
       </article>
       <router-link class="self-center" :to="{ name: 'EditPersonalAccount' }">
