@@ -17,11 +17,11 @@
 
   const handleSubmit = async () => {
     try {
-      const params = {
+      const obj = {
         email: email.value,
         password: password.value,
       }
-      const { data } = await axios.get('https://54d7ea1c7c45f325.mokky.dev/users', { params })
+      const { data } = await axios.get('http://localhost:5234/auth/login', obj)
 
       localStorage.setItem('id', JSON.stringify(data[0].id))
       router.push({ name: 'PersonalAccount' })
