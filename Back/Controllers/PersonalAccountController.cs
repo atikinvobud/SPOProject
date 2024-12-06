@@ -27,7 +27,7 @@ public class PersonalAccountController : ControllerBase
     public IActionResult GetInfo([FromRoute] int id)
     {
         UserInfo userInfo = context.UserInfos.Include(ui => ui.City).Include(ui => ui.FavouriteSports).FirstOrDefault(ui => ui.UserId == id)!;
-        return Ok();
+        return Ok(userInfo.ToDTO());
     }
 
     [HttpPut("edit")]

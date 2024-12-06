@@ -31,7 +31,7 @@ public class AuthorizationController : ControllerBase
         {
             context.Users.Add(user);
             context.SaveChanges();
-            var jsonData =new {id = user.Id };
+            var jsonData =new {id = user.Id};
             return Ok(jsonData);
         }
         else
@@ -44,7 +44,7 @@ public class AuthorizationController : ControllerBase
     {
         UserInfo userInfo = userInfoDTO.ToEntity();
         userInfo.CityId = 1;
-        if(context.Users.Where(u => u.Id == userInfo.UserId).ToList().Count ==1)
+        if(context.Users.Where(u => u.Id == userInfo.UserId).ToList().Count == 1)
         {
             context.UserInfos.Add(userInfo);
             context.SaveChanges();

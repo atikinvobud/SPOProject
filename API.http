@@ -35,10 +35,10 @@ Content-Type: application/json
 {
     "id": 6,
     "surname": "Dmitriev",
-    "name": "Artyom",
+    "name": "ArtyomTest",
     "gender": "male",
     "description": "Бутстрап говно снова",
     "cityId": 1,
     "dateOfBirth": "2005-08-31",
-    "favouriteSportsId": [2]
+    "favouriteSportsId": [1]
 }
