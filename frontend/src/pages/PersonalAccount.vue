@@ -67,7 +67,7 @@
       <article class="flex flex-col gap-[22px]">
         <div class="flex flex-col gap-1">
           <span class="opacity-[.68]">Любимые виды спорта:</span>
-          <span class="text-sm">Футбол, Настольный Теннис</span>
+          <span class="text-sm">{{ personalInfo.favoriteSports }}</span>
         </div>
         <div class="flex flex-col gap-1">
           <span class="opacity-[.68]">О себе:</span>
