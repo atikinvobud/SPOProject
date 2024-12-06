@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "QMCoIQ2VWoA=",
+  "dgSpecHash": "IAACfBwm7Jg=",
   "success": true,
-  "projectFilePath": "C:\\Users\\dubov\\OneDrive\\Документы\\GitHub\\SPOProject\\back\\Back.csproj",
+  "projectFilePath": "C:\\Users\\dubov\\OneDrive\\Документы\\GitHub\\SPOProject\\Back\\Back.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\dubov\\.nuget\\packages\\humanizer.core\\2.14.1\\humanizer.core.2.14.1.nupkg.sha512",
     "C:\\Users\\dubov\\.nuget\\packages\\microsoft.aspnetcore.cors\\2.2.0\\microsoft.aspnetcore.cors.2.2.0.nupkg.sha512",

@@ -24,7 +24,7 @@ public class TestController : Controller
     {
         context.SaveChanges();
         //return Ok(context.NotACities.ToList());
-        return Ok(context.UserInfos.ToList());
+        return Ok(context.Users.ToList());
     }
 
     [HttpPost]
