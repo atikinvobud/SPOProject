@@ -18,7 +18,12 @@ builder.Services.AddControllersWithViews()
     {
         options.JsonSerializerOptions.PropertyNamingPolicy = null; // Не изменяет регистр
         options.JsonSerializerOptions.Converters.Add(new DateOnlyConverter());
-        options.JsonSerializerOptions.ReferenceHandler = System.Text.Json.Serialization.ReferenceHandler.Preserve;
+        
+        // Отключение ReferenceHandler.Preserve, чтобы убрать метаданные $id и $values
+        options.JsonSerializerOptions.ReferenceHandler = System.Text.Json.Serialization.ReferenceHandler.IgnoreCycles;
+        
+        // Опционально: Сделать вывод более удобным (без лишних пробелов и строк)
+        options.JsonSerializerOptions.WriteIndented = false;
     });
 
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");

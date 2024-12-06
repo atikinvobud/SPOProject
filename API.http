@@ -27,7 +27,7 @@ Content-Type: application/json
     "dateOfBirth": "2120-10-11"
 }
 ###
-GET http://localhost:5234/personal-account/6
+GET http://localhost:5234/personal-account/21
 ###
 PUT http://localhost:5234/personal-account/edit
 Content-Type: application/json
