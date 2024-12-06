@@ -9,10 +9,10 @@ public static class UserInfoxtensions
         return new UserInfo()
         {
             UserId = userInfoDTO.id,
-            Name =userInfoDTO.name!,
-            Surname =userInfoDTO.surname!,
-            Description =userInfoDTO.gender!,
-            Birthday =userInfoDTO.dateOfBirth
+            Name = userInfoDTO.name!,
+            Surname = userInfoDTO.surname!,
+            Description = userInfoDTO.gender!,
+            Birthday =  userInfoDTO.dateOfBirth
         };
     }
 }

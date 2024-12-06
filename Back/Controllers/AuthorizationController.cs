@@ -40,9 +40,9 @@ public class AuthorizationController : ControllerBase
         }
     }
     [HttpPost("set-information")]
-    public IActionResult SetInformation( [FromBody] UserInfoDTO userInfoDTO)
+    public IActionResult SetInformation([FromBody] UserInfoDTO userInfoDTO)
     {
-        UserInfo userInfo =userInfoDTO.ToEntity();
+        UserInfo userInfo = userInfoDTO.ToEntity();
         userInfo.CityId = 1;
         if(context.Users.Where( u => u.Id == userInfo.UserId).ToList().Count ==1)
         {
@@ -55,12 +55,12 @@ public class AuthorizationController : ControllerBase
     [HttpGet("login")]
     public IActionResult AuthorizeUser([FromBody] UserDTO userDTO)
     {
-        var User =context.Users.Where(u => u.Login == userDTO.email).ToList();
-        if(User.Count ==1 )
+        var User = context.Users.Where(u => u.Login == userDTO.email).ToList();
+        if(User.Count == 1)
         {
             if(User[0].Password == userDTO.password)
             {
-                var jsonData =new {id = User[0].Id};
+                var jsonData = new {id = User[0].Id};
                 return Ok(jsonData);
             }
         }
