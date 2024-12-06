@@ -12,8 +12,17 @@
     try {
       const id = localStorage.getItem('id')
 
-      const { data } = await axios.get(`https://54d7ea1c7c45f325.mokky.dev/users-info/${id}`)
-      personalInfo.value = data
+      const { data } = await axios.get(`http://localhost:5234/personal-account/${id}`)
+      personalInfo.value = {
+        surname: data.surname,
+        name: data.name,
+        gender: data.gender,
+        dateOfBirth: data.birthday,
+        city: data.city,
+        favouriteSports:
+          data.favouriteSports.length > 0 ? data.favouriteSports.join(', ') : 'Пусто',
+        description: data.description ? data.description : 'Пусто',
+      }
     } catch (err) {
       console.log(err)
     }
@@ -22,11 +31,17 @@
   const onClickSavePersonalInfo = async () => {
     try {
       const obj = {
-        ...personalInfo.value,
+        id: Number(localStorage.getItem('id')),
+        surname: personalInfo.value.surname,
+        name: personalInfo.value.name,
+        gender: personalInfo.value.gender,
+        dateOfBirth: personalInfo.value.dateOfBirth,
+        description: personalInfo.value.description,
+        cityId: 1,
+        favouriteSportsId: [1, 2],
       }
-
-      const id = localStorage.getItem('id')
-      const { data } = await axios.patch(`https://54d7ea1c7c45f325.mokky.dev/users-info/${id}`, obj)
+      console.log(obj)
+      const { data } = await axios.put(`http://localhost:5234/personal-account/edit`, obj)
 
       router.push({ name: 'PersonalAccount' })
       return data
@@ -101,6 +116,7 @@
             class="rounded-lg text-lg bg-gray pl-4 py-2 border-[#D5D5D3]"
             type="text"
             name="favorite-types-of-sport"
+            v-model="personalInfo.favouriteSports"
           />
         </div>
         <div class="flex flex-col gap-4">
@@ -109,6 +125,7 @@
             class="rounded-lg text-lg bg-gray pl-4 py-2 border-[#D5D5D3]"
             type="text"
             name="about"
+            v-model="personalInfo.description"
           />
         </div>
       </article>

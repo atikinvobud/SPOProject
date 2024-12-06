@@ -22,15 +22,17 @@
   const fetchPersonalInfo = async () => {
     try {
       const id = localStorage.getItem('id')
-      const { data } = await axios.get(`https://54d7ea1c7c45f325.mokky.dev/users-info/${id}`)
+      const { data } = await axios.get(`http://localhost:5234/personal-account/${id}`)
+      console.log(data)
 
       personalInfo.value = {
         surname: data.surname,
         name: data.name,
         gender: data.gender,
-        age: calculateAge(data.dateOfBirth),
+        age: calculateAge(data.birthday),
         city: data.city,
-        favoriteSports: data.favoriteSports ? data.favoriteSports.join(', ') : 'Пусто',
+        favouriteSports:
+          data.favouriteSports.length > 0 ? data.favouriteSports.join(', ') : 'Пусто',
         description: data.description ? data.description : 'Пусто',
       }
     } catch (err) {
@@ -67,7 +69,7 @@
       <article class="flex flex-col gap-[22px]">
         <div class="flex flex-col gap-1">
           <span class="opacity-[.68]">Любимые виды спорта:</span>
-          <span class="text-sm">{{ personalInfo.favoriteSports }}</span>
+          <span class="text-sm">{{ personalInfo.favouriteSports }}</span>
         </div>
         <div class="flex flex-col gap-1">
           <span class="opacity-[.68]">О себе:</span>
