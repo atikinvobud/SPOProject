@@ -23,7 +23,8 @@ public static class AccountInfoExtensions
             gender = userInfo.Gender,
             city = userInfo.City!.Name,
             birthday = userInfo.Birthday,
-            favouriteSports = favouriteSportsList
+            favouriteSports = favouriteSportsList,
+            description = userInfo.Description
         };
     }
 

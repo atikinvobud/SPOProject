@@ -27,13 +27,13 @@ Content-Type: application/json
     "dateOfBirth": "2120-10-11"
 }
 ###
-GET http://localhost:5234/personal-account/21
+GET http://localhost:5234/personal-account/7
 ###
 PUT http://localhost:5234/personal-account/edit
 Content-Type: application/json
 
 {
-    "id": 6,
+    "id": 21,
     "surname": "Dmitriev",
     "name": "ArtyomTest",
     "gender": "male",
@@ -41,4 +41,33 @@ Content-Type: application/json
     "cityId": 1,
     "dateOfBirth": "2005-08-31",
     "favouriteSportsId": [1]
+}
+###
+POST http://localhost:5234/tournaments/create
+Content-Type: application/json
+
+{
+    "name": "Test Name",
+    "typeOfSport": 1,
+    "format": 1,
+    "placement": "Жопа дракона",
+    "startDate": "2024-08-10",
+    "endTime": "2024-08-12",
+    "description": "Я люблю какать",
+    "contacts": "Я не придумал",
+    "registrationDeadline": "2005-08-31T10:20:00Z"
+}
+
+###
+GET http://localhost:5234/sports
+###
+GET http://localhost:5234/formats
+###
+GET http://localhost:5234/cities
+###
+POST http://localhost:5234/cities/create
+Content-Type: application/json
+
+{
+    "name": "Нижний Новгород"
 }

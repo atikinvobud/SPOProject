@@ -13,4 +13,5 @@ public record AccountInfoDTO
     public string? city { get; set; }
     public DateOnly birthday { get; set; }
     public List<string> favouriteSports { get; set; } = [];
+    public string? description { get; set; }
 }
