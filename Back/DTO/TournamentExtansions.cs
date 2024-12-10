@@ -43,4 +43,38 @@ public static class TournamentExtansions
             Link = "NotALink",
         };
     }
+
+    public static BasedTournamentDTO ToBasedDTO(this Tournament tournament, Context context)
+    {
+        return new BasedTournamentDTO()
+        {
+            id = tournament.Id,
+            name = tournament.Name,
+            sport = context.Sports.Find(tournament.SportId)!.Name,
+            format = context.Formats.Find(tournament.FormatId)!.Name,
+            city = context.NotACities.Find(context.Locations.Find(tournament.LocationId)!.CityId)!.Name,
+            status = "Решим позже",
+            startDate = context.Dates.Find(tournament.DateId)!.Start,
+            endDate = context.Dates.Find(tournament.DateId)!.End,
+            registrationDeadline = context.Dates.Find(tournament.DateId)!.Registration,
+        };
+    }
+
+    public static ExtendedTournamentDTO ToExtendedDTO(this Tournament tournament, Context context)
+    {
+        return new ExtendedTournamentDTO()
+        {
+            id = tournament.Id,
+            name = tournament.Name,
+            sport = context.Sports.Find(tournament.SportId)!.Name,
+            format = context.Formats.Find(tournament.FormatId)!.Name,
+            address = context.NotACities.Find(context.Locations.Find(tournament.LocationId)!.CityId)!.Name,
+            status = "Решим позже",
+            description = tournament.Description,
+            contacts = tournament.contacts,
+            startDate = context.Dates.Find(tournament.DateId)!.Start,
+            endDate = context.Dates.Find(tournament.DateId)!.End,
+            registrationDeadline = context.Dates.Find(tournament.DateId)!.Registration,
+        };
+    }
 }

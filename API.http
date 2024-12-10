@@ -71,3 +71,7 @@ Content-Type: application/json
 {
     "name": "Нижний Новгород"
 }
+###
+GET http://localhost:5234/tournaments/get?cityId=1&sportId=1&status=ended&isPrivate=false
+###
+GET http://localhost:5234/tournaments/get/4
