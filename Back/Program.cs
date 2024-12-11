@@ -25,11 +25,25 @@ builder.Services.AddControllersWithViews()
         // Опционально: Сделать вывод более удобным (без лишних пробелов и строк)
         options.JsonSerializerOptions.WriteIndented = false;
     });
+builder.Services.AddSwaggerGen(options =>
+{
+    options.SwaggerDoc("v1", new Microsoft.OpenApi.Models.OpenApiInfo
+    {
+        Title = "My API",
+        Version = "v1"
+    });
+});
 
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
 builder.Services.AddDbContext<Context>(options => options.UseNpgsql(connectionString));
 
 var app = builder.Build();
+
+app.UseSwagger();
+app.UseSwaggerUI(c =>
+{
+    c.SwaggerEndpoint("/swagger/v1/swagger.json", "v1");
+});
 
 if (!app.Environment.IsDevelopment())
 {
