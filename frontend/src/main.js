@@ -12,6 +12,7 @@ import SignUp from './pages/SignUp.vue'
 import SetIOriginalnformation from './pages/SetIOriginalnformation.vue'
 import PersonalAccount from './pages/PersonalAccount.vue'
 import EditPersonalAccount from './pages/EditPersonalAccount.vue'
+import SearchTournament from './pages/SearchTournament.vue'
 import CreateTournament from './pages/CreateTournament.vue'
 import NotFound from './pages/NotFound.vue'
 
@@ -32,6 +33,7 @@ const routes = [
     path: '/', component: Main, children: [
       { path: '', name: 'PersonalAccount', component: PersonalAccount },
       { path: '/personal-account/edit', name: 'EditPersonalAccount', component: EditPersonalAccount },
+      { path: '/search-tournament', name: 'SearchTournament', component: SearchTournament },
       { path: '/create-tournament', name: 'CreateTournament', component: CreateTournament },
     ]
   },
