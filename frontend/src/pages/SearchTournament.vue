@@ -30,7 +30,7 @@
     },
   ])
 
-  const fetchValueForFilters = async () => {
+  const fetchOptionsForFilters = async () => {
     try {
       const [citiesResponse, sportsResponse] = await Promise.all([
         axios.get('http://localhost:5234/cities'),
@@ -78,7 +78,7 @@
     return data
   }
 
-  onMounted(fetchValueForFilters)
+  onMounted(fetchOptionsForFilters)
 </script>
 
 <template>

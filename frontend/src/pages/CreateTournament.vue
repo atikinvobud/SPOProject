@@ -1,5 +1,5 @@
 <script setup>
-  import { ref, reactive, computed } from 'vue'
+  import { ref, reactive, computed, onMounted } from 'vue'
   import { useRouter } from 'vue-router'
 
   import axios from 'axios'
@@ -10,6 +10,7 @@
     name: '',
     typeOfSport: '',
     format: '',
+    city: '',
     placement: '',
     startDate: '',
     endDate: '',
@@ -17,6 +18,10 @@
     contacts: '',
     registrationDeadline: '',
   })
+
+  const typeOfSports = ref([])
+  const formats = ref([])
+  const cities = ref([])
 
   function toLocalISOString(date) {
     const pad = (num) => String(num).padStart(2, '0')
@@ -54,6 +59,21 @@
     return true
   })
 
+  const fetchOptionsForFields = async () => {
+    try {
+      const [sportsResponse, formatsResponse, citiesResponse] = await Promise.all([
+        axios.get('http://localhost:5234/sports'),
+        axios.get('http://localhost:5234/formats'),
+        axios.get('http://localhost:5234/cities'),
+      ])
+      typeOfSports.value = sportsResponse.data
+      formats.value = formatsResponse.data
+      cities.value = citiesResponse.data
+    } catch (err) {
+      console.log(err)
+    }
+  }
+
   const handleSubmit = () => {
     try {
       const obj = {
@@ -70,6 +90,8 @@
       console.log(err)
     }
   }
+
+  onMounted(fetchOptionsForFields)
 </script>
 
 <template>
@@ -100,19 +122,36 @@
                 required
                 v-model="tournamentInfo.typeOfSport"
               >
-                <option value="Футбол">Футбол</option>
-                <option value="Настольный теннис">Настольный теннис</option>
-                <option value="Шахматы">Шахматы</option>
+                <option
+                  v-for="typeOfSport in typeOfSports"
+                  :key="typeOfSport.id"
+                  :value="typeOfSport.id"
+                >
+                  {{ typeOfSport.name }}
+                </option>
               </select>
             </div>
             <div class="flex flex-col gap-[6px]">
               <label for="format">Формат турнира</label>
               <select class="input-field" name="format" required v-model="tournamentInfo.format">
-                <option value="На выбывание">На выбывание</option>
-                <option value="Регулярный">Регулярный</option>
+                <option v-for="format in formats" :key="format.id" :value="format.id">
+                  {{ format.name }}
+                </option>
               </select>
             </div>
           </div>
+          <div class="grid grid-cols-2 gap-6 mb-5">
+            <div class="flex flex-col gap-[6px]">
+              <label for="city">Город</label>
+              <select class="input-field" name="city" required v-model="tournamentInfo.city">
+                <option v-for="city in cities" :key="city.id" :value="city.id">
+                  {{ city.name }}
+                </option>
+              </select>
+            </div>
+            <div class="flex flex-col gap-[6px]"></div>
+          </div>
+
           <div class="flex flex-col gap-[6px] mb-5">
             <label for="placement">Место проведения</label>
             <input
