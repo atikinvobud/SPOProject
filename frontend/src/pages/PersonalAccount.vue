@@ -23,16 +23,15 @@
     try {
       const id = localStorage.getItem('id')
       const { data } = await axios.get(`http://localhost:5234/personal-account/${id}`)
-      console.log(data)
 
       personalInfo.value = {
         surname: data.surname,
         name: data.name,
         gender: data.gender,
         age: calculateAge(data.birthday),
-        city: data.city,
+        city: data.city ? data.city : 'Не выбран',
         favouriteSports:
-          data.favouriteSports.length > 0 ? data.favouriteSports.join(', ') : 'Пусто',
+          data.favouriteSports.length > 0 ? data.favouriteSports.join(', ') : 'Не выбраны',
         description: data.description ? data.description : 'Пусто',
       }
     } catch (err) {

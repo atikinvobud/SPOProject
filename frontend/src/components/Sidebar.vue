@@ -7,10 +7,12 @@
           <span>Личный кабинет</span>
         </li>
       </router-link>
-      <li class="flex gap-3 hover:text-light-blue">
-        <img src="/sidebar/search-logo.svg" alt="search-logo" />
-        <span>Найти турнир</span>
-      </li>
+      <router-link :to="{ name: 'SearchTournament' }">
+        <li class="flex gap-3 hover:text-light-blue">
+          <img src="/sidebar/search-logo.svg" alt="search-logo" />
+          <span>Найти турнир</span>
+        </li>
+      </router-link>
       <li class="flex gap-3 hover:text-light-blue">
         <img src="/sidebar/cup-logo.svg" alt="cup-logo" />
         <span>Турниры</span>
