@@ -50,7 +50,7 @@
       <li
         v-for="option in filter.options"
         :key="option.id"
-        @click="selectOption(option.id)"
+        @click="selectOption(option.id), toggleVisibility()"
         :class="{ 'bg-gray': false }"
         class="whitespace-nowrap cursor-pointer px-2 py-1 hover:bg-gray bg-white first:rounded-tl-lg first:rounded-tr-lg last:rounded-bl-lg last:rounded-br-lg"
       >

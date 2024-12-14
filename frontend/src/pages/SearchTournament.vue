@@ -2,6 +2,8 @@
   import { ref, reactive, onMounted } from 'vue'
 
   import SearchComponent from '@/components/SearchComponent.vue'
+  import TournamentList from '@/components/TournamentList.vue'
+
   import axios from 'axios'
 
   const searchQuery = ref('')
@@ -13,7 +15,7 @@
       isVisible: false,
     },
     {
-      label: 'Формат',
+      label: 'Город',
       options: [],
       selectedId: null,
       isVisible: false,
@@ -37,45 +39,57 @@
         axios.get('http://localhost:5234/sports'),
       ])
 
-      filters[0].options = citiesResponse.data
-      filters[1].options = sportsResponse.data
+      filters[0].options = sportsResponse.data
+      filters[1].options = citiesResponse.data
     } catch (err) {
       console.log(err)
     }
   }
 
+  const tournaments = ref([])
+  const isNotFound = ref(false)
+
   const onClickSearch = async () => {
-    console.log(filters)
-    const params = {
-      name: `*${searchQuery.value}*`,
-      isPrivate: false,
-    }
+    try {
+      const params = {
+        name: `*${searchQuery.value}*`,
+        // isPrivate: false,
+      }
 
-    const cityId = filters[0].selectedId
-    if (cityId !== null) {
-      params.cityId = cityId
-    }
+      const sportId = filters[0].selectedId
+      if (sportId !== null) {
+        params.sportId = sportId
+      }
 
-    const sportId = filters[1].selectedId
-    if (sportId !== null) {
-      params.sportId = sportId
-    }
+      const cityId = filters[1].selectedId
+      if (cityId !== null) {
+        params.cityId = cityId
+      }
 
-    const status = filters[2].selectedValue
-    switch (status) {
-      case 0:
-        params.status = 'registraton'
-        break
-      case 1:
-        params.status = 'registrationclosed'
-        break
-      case 2:
-        params.status = 'active'
-        break
+      const status = filters[2].selectedValue
+      switch (status) {
+        case 0:
+          params.status = 'registraton'
+          break
+        case 1:
+          params.status = 'registrationclosed'
+          break
+        case 2:
+          params.status = 'active'
+          break
+      }
+      const { data } = await axios.get(`https://54d7ea1c7c45f325.mokky.dev/tournaments`, { params })
+
+      tournaments.value = data
+
+      if (tournaments.value.length === 0) {
+        isNotFound.value = true
+      } else {
+        isNotFound.value = false
+      }
+    } catch (err) {
+      console.log(err)
     }
-    const { data } = await axios.get(`https://54d7ea1c7c45f325.mokky.dev/tournaments`, { params })
-    console.log(data)
-    return data
   }
 
   onMounted(fetchOptionsForFilters)
@@ -90,5 +104,7 @@
       v-model:searchQuery="searchQuery"
       @onClickSearch="onClickSearch"
     />
+    <TournamentList :tournaments="tournaments" />
+    <p v-if="isNotFound" class="text-xl ml-8">Турниры не найдены</p>
   </div>
 </template>

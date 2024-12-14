@@ -8,12 +8,22 @@
 
   const isVisibleDropdown = ref(false)
 
-  const toggleVisibilityOfDropdown = () => {
-    isVisibleDropdown.value = !isVisibleDropdown.value
-    if (isVisibleDropdown.value === false) {
-      for (const filter of filters.value) {
-        filter.isVisible = false
-      }
+  const closeDropdown = () => {
+    isVisibleDropdown.value = false
+    for (const filter of filters.value) {
+      filter.isVisible = false
+    }
+  }
+
+  const openDropdown = () => {
+    isVisibleDropdown.value = true
+  }
+
+  const toggleVisibilityOfDropdown = (isSearchButton = false) => {
+    if (isVisibleDropdown.value === true) {
+      closeDropdown()
+    } else if (!isSearchButton) {
+      openDropdown()
     }
   }
 
@@ -43,7 +53,7 @@
       </div>
       <button
         class="bg-blue text-white rounded-2xl px-[13px] py-1 transition hover:bg-[#004EC3]"
-        @click="emit('onClickSearch')"
+        @click="emit('onClickSearch'), toggleVisibilityOfDropdown(true)"
       >
         Поиск
       </button>
@@ -51,7 +61,7 @@
     <div class="relative flex-1">
       <div
         class="px-4 py-[5px] bg-white rounded-2xl border border-[#D5D5D3] hover:bg-gray inline-flex cursor-pointer"
-        @click="toggleVisibilityOfDropdown"
+        @click="toggleVisibilityOfDropdown()"
       >
         <button class="flex items-baseline gap-1">
           Фильтр

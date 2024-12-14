@@ -79,7 +79,6 @@
       const obj = {
         ...tournamentInfo,
         organizerID: Number(localStorage.getItem('id')),
-        private: false,
       }
 
       const { data } = axios.post(`https://54d7ea1c7c45f325.mokky.dev/tournaments`, obj)
