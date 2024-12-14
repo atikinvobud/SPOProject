@@ -72,8 +72,13 @@ Content-Type: application/json
     "name": "Нижний Новгород"
 }
 ###
-GET http://localhost:5234/tournaments/get?cityId=1&sportId=1&status=ended&isPrivate=false
+GET http://localhost:5234/tournaments/get?name=te&cityId=1&sportId=1&status=ended&isPrivate=false
 ###
 GET http://localhost:5234/tournaments/get/4
 ###
 http://localhost:5234/swagger/index.html
+###
+GET http://localhost:5234/personal-account/6
+###
+
+POST http://localhost:5234/register/set-information

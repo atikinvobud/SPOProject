@@ -43,7 +43,6 @@ public class AuthorizationController : ControllerBase
     public IActionResult SetInformation([FromBody] UserInfoDTO userInfoDTO)
     {
         UserInfo userInfo = userInfoDTO.ToEntity();
-        userInfo.CityId = 1;
         if(context.Users.Where(u => u.Id == userInfo.UserId).ToList().Count == 1)
         {
             context.UserInfos.Add(userInfo);

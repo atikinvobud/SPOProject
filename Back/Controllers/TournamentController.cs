@@ -7,6 +7,7 @@ using Back.DTO;
 using Back.Models;
 using Microsoft.EntityFrameworkCore;
 using Back.DTO.TournamentDTOs;
+using System.Runtime.CompilerServices;
 
 namespace Back.Controllers;
 
@@ -44,10 +45,15 @@ public class TournamentController : ControllerBase
     }
     
     [HttpGet("get")]
-    public IActionResult Get([FromQuery] int? sportId, [FromQuery] int? cityId, [FromQuery] string? status, [FromQuery] bool? isPrivate)
+    public IActionResult Get([FromQuery] string? name, [FromQuery] int? sportId, [FromQuery] int? cityId, [FromQuery] string? status, [FromQuery] bool? isPrivate)
     {
         List<Tournament> tournaments = context.Tournaments.Include(t => t.Location).Include(t => t.Date).ToList();
         
+        if (name != null)
+        {
+            tournaments = tournaments.Where(t => t.Name.ToLower().Contains(name.ToLower())).ToList();
+            tournaments = tournaments.OrderBy(t => t.Name.Length - name.Length).ToList();
+        }
         if (sportId != null) tournaments = tournaments.Where(t => t.SportId == sportId).ToList();
         if (cityId != null) tournaments = tournaments.Where(t => t.Location!.CityId == cityId).ToList();
         if (status != null) tournaments = tournaments.Where(t => GetStatus(t) == status).ToList();

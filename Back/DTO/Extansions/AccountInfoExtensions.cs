@@ -16,15 +16,23 @@ public static class AccountInfoExtensions
             favouriteSportsList.Add(sport.Name);
         }
 
+        string cityNotNull;
+        if (userInfo.CityId != null) cityNotNull = userInfo.City!.Name;
+        else cityNotNull = "";
+
+        string descriptionNotNull;
+        if (userInfo.Description != null) descriptionNotNull = userInfo.Description;
+        else descriptionNotNull = "";
+
         return new AccountInfoDTO()
         {
             surname = userInfo.Surname,
             name = userInfo.Name,
             gender = userInfo.Gender,
-            city = userInfo.City!.Name,
+            city = cityNotNull,
             birthday = userInfo.Birthday,
             favouriteSports = favouriteSportsList,
-            description = userInfo.Description
+            description = descriptionNotNull
         };
     }
 
