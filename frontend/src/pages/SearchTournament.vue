@@ -98,7 +98,9 @@
 <template>
   <div class="mx-auto w-[1124px]">
     <h1 class="font-semibold text-[28px] mb-5">Поиск турнира</h1>
-    <p class="text-sm text-blue mb-6">Главная <span class="opacity-[.68]">></span> Поиск турнира</p>
+    <p class="text-sm text-blue mb-6">
+      Главная <span class="text-dark-blue opacity-[.68]">></span> Поиск турнира
+    </p>
     <SearchComponent
       v-model:filters="filters"
       v-model:searchQuery="searchQuery"

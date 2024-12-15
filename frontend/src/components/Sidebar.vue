@@ -102,10 +102,12 @@
           </li>
         </ul>
       </li>
-      <li class="flex gap-3 hover:text-light-blue">
-        <img src="/sidebar/team-logo.svg" alt="team-logo" />
-        <span>Команды</span>
-      </li>
+      <router-link :to="{ name: 'MyCommands' }">
+        <li class="flex gap-3 hover:text-light-blue">
+          <img src="/sidebar/team-logo.svg" alt="team-logo" />
+          <span>Команды</span>
+        </li>
+      </router-link>
       <li class="flex gap-3 hover:text-light-blue">
         <img src="/sidebar/requests-logo.svg" alt="requests-logo" />
         <span>Заявки</span>
