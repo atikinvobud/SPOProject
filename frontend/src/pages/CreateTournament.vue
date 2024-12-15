@@ -78,10 +78,15 @@
     try {
       const obj = {
         ...tournamentInfo,
-        organizerID: Number(localStorage.getItem('id')),
+        organizerId: Number(localStorage.getItem('id')),
       }
 
-      const { data } = axios.post(`https://54d7ea1c7c45f325.mokky.dev/tournaments`, obj)
+      obj.cityId = obj.city
+      delete obj.city
+
+      obj.registrationDeadline += ':00Z'
+
+      const { data } = axios.post(`http://localhost:5234/tournaments/create`, obj)
 
       router.push({ name: 'PersonalAccount' })
       return data

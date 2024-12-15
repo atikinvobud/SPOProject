@@ -52,8 +52,8 @@
   const onClickSearch = async () => {
     try {
       const params = {
-        name: `*${searchQuery.value}*`,
-        // isPrivate: false,
+        name: `${searchQuery.value}`,
+        isPrivate: false,
       }
 
       const sportId = filters[0].selectedId
@@ -66,7 +66,7 @@
         params.cityId = cityId
       }
 
-      const status = filters[2].selectedValue
+      const status = filters[2].selectedId
       switch (status) {
         case 0:
           params.status = 'registraton'
@@ -78,7 +78,7 @@
           params.status = 'active'
           break
       }
-      const { data } = await axios.get(`https://54d7ea1c7c45f325.mokky.dev/tournaments`, { params })
+      const { data } = await axios.get(`http://localhost:5234/tournaments/get`, { params })
 
       tournaments.value = data
 
