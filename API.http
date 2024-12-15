@@ -20,8 +20,8 @@ POST http://localhost:5234/auth/set-information
 Content-Type: application/json
 
 {
-    "id": 1,
-    "surname": "Dmitriev",
+    "id": 34,
+    "surname": "NewTest",
     "name": "Artyom",
     "gender": "male",
     "dateOfBirth": "2120-10-11"
@@ -33,29 +33,31 @@ PUT http://localhost:5234/personal-account/edit
 Content-Type: application/json
 
 {
-    "id": 21,
+    "id": 34,
     "surname": "Dmitriev",
-    "name": "ArtyomTest",
+    "name": "NewTest",
     "gender": "male",
-    "description": "Бутстрап говно снова",
-    "cityId": 1,
+    "description": "Тест 34",
+    "cityId": 3,
     "dateOfBirth": "2005-08-31",
-    "favouriteSportsId": [1]
+    "favouriteSportsId": [2]
 }
 ###
 POST http://localhost:5234/tournaments/create
 Content-Type: application/json
 
 {
-    "name": "Test Name",
-    "typeOfSport": 1,
+    "name": "Турнирчик",
+    "typeOfSport": 2,
     "format": 1,
-    "placement": "Жопа дракона",
+    "cityId": 1,
+    "placement": "Лужники",
     "startDate": "2024-08-10",
-    "endTime": "2024-08-12",
-    "description": "Я люблю какать",
-    "contacts": "Я не придумал",
-    "registrationDeadline": "2005-08-31T10:20:00Z"
+    "endDate": "2024-08-12",
+    "description": "Лучший турнир",
+    "contacts": "Никита Дубов",
+    "registrationDeadline": "2005-08-31T10:20:00Z",
+    "organizerId": 3
 }
 
 ###
@@ -78,7 +80,6 @@ GET http://localhost:5234/tournaments/get/4
 ###
 http://localhost:5234/swagger/index.html
 ###
-GET http://localhost:5234/personal-account/6
+GET http://localhost:5234/personal-account/34
 ###
-
 POST http://localhost:5234/register/set-information

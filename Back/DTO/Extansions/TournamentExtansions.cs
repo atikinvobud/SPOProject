@@ -15,14 +15,14 @@ public static class TournamentExtansions
         Date date = new Date()
         {
             Start = createTournamentDTO.startDate,
-            End = createTournamentDTO.endTime,
+            End = createTournamentDTO.endDate,
             Registration = createTournamentDTO.registrationDeadline,
         };
         context.Dates.Add(date);
 
         Location location = new Location()
         {
-            CityId = 1,
+            CityId = createTournamentDTO.cityId,
             Street = "",
             SportObjectName = createTournamentDTO.placement!,
         };
@@ -39,7 +39,6 @@ public static class TournamentExtansions
             SportId = createTournamentDTO.typeOfSport,
             FormatId = createTournamentDTO.format,
             contacts = createTournamentDTO.contacts,
-            NotificationId = 1,
             Link = "NotALink",
         };
     }

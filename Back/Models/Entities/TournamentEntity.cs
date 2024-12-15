@@ -18,7 +18,7 @@ public class Tournament
     public int FormatId{ get; set; }
     public Format? Format{ get; set; }
     public string? contacts  { get; set; }
-    public int NotificationId { get; set; }
+    public int? NotificationId { get; set; }
     public Notification? Notification{ get; set; }
     public required string Link { get; set; }
 }
