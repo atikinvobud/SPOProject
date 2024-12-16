@@ -8,7 +8,6 @@ public class TeamUsers
     public int TeamId { get; set; }
     public Team? Team { get; set; }
     public required DateOnly DateOfRegistration{ get; set; }
-    public required bool IsFull{ get; set; }
     public int RoleId { get; set; }
     public Role? Role { get; set; }
 }

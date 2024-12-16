@@ -82,4 +82,18 @@ http://localhost:5234/swagger/index.html
 ###
 GET http://localhost:5234/personal-account/34
 ###
-POST http://localhost:5234/register/set-information
+POST http://localhost:5234/role/create
+Content-Type: application/json
+
+{
+    "name": "Member",
+    "isTeamRole": true
+}
+###
+POST http://localhost:5234/Team/Create
+Content-Type: application/json
+
+{
+    "creatorId": 7,
+    "name": "First Team in History"
+}
