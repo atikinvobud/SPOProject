@@ -16,6 +16,7 @@ import SearchTournament from './pages/SearchTournament.vue'
 import CreateTournament from './pages/CreateTournament.vue'
 import NotFound from './pages/NotFound.vue'
 import MyCommands from './pages/MyCommands.vue'
+import CreateCommand from './pages/CreateCommand.vue'
 
 const app = createApp(App)
 
@@ -36,7 +37,8 @@ const routes = [
       { path: '/personal-account/edit', name: 'EditPersonalAccount', component: EditPersonalAccount },
       { path: '/search-tournament', name: 'SearchTournament', component: SearchTournament },
       { path: '/create-tournament', name: 'CreateTournament', component: CreateTournament },
-      { path: '/my-commands', name: 'MyCommands', component: MyCommands }
+      { path: '/my-commands', name: 'MyCommands', component: MyCommands },
+      { path: '/my-commands/create', name: 'CreateCommand', component: CreateCommand }
     ]
   },
   { path: '/:pathMatch(.*)*', name: 'NotFound', component: NotFound }

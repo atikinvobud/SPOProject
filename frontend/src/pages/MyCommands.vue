@@ -2,6 +2,7 @@
   import { ref, reactive, onMounted } from 'vue'
 
   import SearchComponent from '@/components/SearchComponent.vue'
+  import CommandsList from '@/components/CommandsList.vue'
   import axios from 'axios'
 
   const searchQuery = ref('')
@@ -55,63 +56,6 @@
       v-model:searchQuery="searchQuery"
       @onClickSearch="onClickSearch"
     />
-    <div class="w-[700px]">
-      <section class="grid grid-cols-3 gap-7 mt-6">
-        <div
-          class="bg-white p-4 rounded-2xl flex flex-col gap-6 transition hover:-translate-y-2 hover:shadow-lg cursor-pointer"
-        >
-          <div class="flex flex-col gap-1">
-            <h2 class="text-xl">Качки</h2>
-            <p class="opacity-[.68]">Футбол</p>
-            <p><span class="opacity-[.68]">Роль:</span> Участник</p>
-          </div>
-          <img
-            class="w-[100px] h-[100px] rounded-full self-center"
-            src="/other/gigachad.png"
-            alt=""
-          />
-        </div>
-        <div
-          class="bg-white p-4 rounded-2xl flex flex-col gap-6 transition hover:-translate-y-2 hover:shadow-lg cursor-pointer"
-        >
-          <div class="flex flex-col gap-1">
-            <h2 class="text-xl">Качки</h2>
-            <p class="opacity-[.68]">Футбол</p>
-            <p><span class="opacity-[.68]">Роль:</span> Участник</p>
-          </div>
-          <img
-            class="w-[100px] h-[100px] rounded-full self-center"
-            src="/other/gigachad.png"
-            alt=""
-          />
-        </div>
-        <div
-          class="bg-white p-4 rounded-2xl flex flex-col gap-6 transition hover:-translate-y-2 hover:shadow-lg cursor-pointer"
-        >
-          <div class="flex flex-col gap-1">
-            <h2 class="text-xl">Качки</h2>
-            <p class="opacity-[.68]">Футбол</p>
-            <p><span class="opacity-[.68]">Роль:</span> Участник</p>
-          </div>
-          <img
-            class="w-[100px] h-[100px] rounded-full self-center"
-            src="/other/gigachad.png"
-            alt=""
-          />
-        </div>
-      </section>
-      <div class="flex gap-6 justify-center mt-8">
-        <button
-          class="bg-blue text-white rounded-[18px] py-2 px-4 min-w-[200px] transition hover:bg-[#004EC3]"
-        >
-          Найти команду
-        </button>
-        <button
-          class="bg-blue text-white rounded-[18px] py-2 px-4 min-w-[200px] transition hover:bg-[#004EC3]"
-        >
-          Создать команду
-        </button>
-      </div>
-    </div>
+    <CommandsList></CommandsList>
   </div>
 </template>
