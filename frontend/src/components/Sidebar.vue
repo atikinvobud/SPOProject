@@ -102,7 +102,7 @@
           </li>
         </ul>
       </li>
-      <router-link :to="{ name: 'MyCommands' }">
+      <router-link :to="{ name: 'MyTeams' }">
         <li class="flex gap-3 hover:text-light-blue">
           <img src="/sidebar/team-logo.svg" alt="team-logo" />
           <span>Команды</span>

@@ -8,15 +8,15 @@
 
   const typeOfSports = ref([])
 
-  const commandInfo = reactive({
+  const teamInfo = reactive({
     name: '',
     typeOfSport: '',
     contacts: '',
   })
 
   const isDataEntered = computed(() => {
-    for (const key in commandInfo) {
-      if (commandInfo[key] === '') {
+    for (const key in teamInfo) {
+      if (teamInfo[key] === '') {
         return false
       }
     }
@@ -26,13 +26,13 @@
   const handleSubmit = async () => {
     try {
       const obj = {
-        ...commandInfo,
+        ...teamInfo,
         createrId: Number(localStorage.getItem('id')),
       }
 
-      const { data } = axios.post(`https://54d7ea1c7c45f325.mokky.dev/commands`, obj)
+      const { data } = axios.post(`https://54d7ea1c7c45f325.mokky.dev/teams`, obj)
 
-      router.push({ name: 'MyCommands' })
+      router.push({ name: 'MyTeams' })
       return data
     } catch (err) {
       console.log(err)
@@ -65,7 +65,7 @@
         <section class="flex justify-between mt-6">
           <div class="flex flex-col gap-1">
             <label for="name">Название</label>
-            <input class="w-[300px] input-field" type="text" required v-model="commandInfo.name" />
+            <input class="w-[300px] input-field" type="text" required v-model="teamInfo.name" />
           </div>
           <div class="flex flex-col gap-1">
             <label for="typeOfSport">Вид спорта</label>
@@ -73,7 +73,7 @@
               class="w-[300px] input-field"
               name="typeOfSport"
               required
-              v-model="commandInfo.typeOfSport"
+              v-model="teamInfo.typeOfSport"
             >
               <option
                 v-for="typeOfSport in typeOfSports"
@@ -92,7 +92,7 @@
             class="input-field"
             name="contacts"
             type="text"
-            v-model="commandInfo.contacts"
+            v-model="teamInfo.contacts"
           ></textarea>
         </section>
         <button

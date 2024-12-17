@@ -2,7 +2,7 @@
   import { ref, reactive, onMounted } from 'vue'
 
   import SearchComponent from '@/components/SearchComponent.vue'
-  import CommandsList from '@/components/CommandsList.vue'
+  import TeamsList from '@/components/TeamsList.vue'
   import axios from 'axios'
 
   const searchQuery = ref('')
@@ -56,6 +56,6 @@
       v-model:searchQuery="searchQuery"
       @onClickSearch="onClickSearch"
     />
-    <CommandsList></CommandsList>
+    <TeamsList></TeamsList>
   </div>
 </template>
