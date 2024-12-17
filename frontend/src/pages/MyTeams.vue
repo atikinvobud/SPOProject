@@ -49,7 +49,10 @@
   <div class="mx-auto w-[1124px]">
     <h1 class="font-semibold text-[28px] mb-5">Мои команды</h1>
     <p class="text-sm text-blue mb-6">
-      Главная <span class="text-dark-blue opacity-[.68]">></span> Команды
+      <router-link :to="{ name: 'PersonalAccount' }"
+        ><span class="hover:underline hover:underline-offset-4">Главная</span></router-link
+      >
+      <span class="text-dark-blue opacity-[.68]"> > </span>Команды
     </p>
     <SearchComponent
       v-model:filters="filters"

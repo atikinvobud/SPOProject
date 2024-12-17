@@ -102,7 +102,10 @@
   <div class="mx-auto w-[880px]">
     <h1 class="font-semibold text-[28px] mb-5">Создание турнира</h1>
     <p class="text-sm text-blue mb-6">
-      Главная <span class="text-dark-blue opacity-[.68]">></span> Создание турнира
+      <router-link :to="{ name: 'PersonalAccount' }"
+        ><span class="hover:underline hover:underline-offset-4">Главная</span></router-link
+      >
+      <span class="text-dark-blue opacity-[.68]"> > </span>Создание турнира
     </p>
     <div class="bg-white shadow rounded-2xl px-[22px] py-5 flex flex-col">
       <form class="flex flex-col" @submit.prevent="handleSubmit">

@@ -49,6 +49,8 @@
           type="email"
           name="email"
           placeholder="Почта"
+          pattern="\w+@[a-z_]+\.[a-z]{2,6}"
+          title="Неправильный формат почты. username@domain.com (Пример)"
           v-model="email"
           required
         />
@@ -58,6 +60,8 @@
           name="password"
           placeholder="Пароль"
           v-model="password"
+          pattern="\S{6,}"
+          title="Пароль должен содержать минимум 6 символов, среди которых нет пробела"
           required
         />
         <input

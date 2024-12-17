@@ -2,8 +2,14 @@
   <div class="mx-auto w-[680px]">
     <h1 class="font-semibold text-[28px] mb-5">Информация о команде</h1>
     <p class="text-sm text-blue mb-6">
-      Главная <span class="text-dark-blue opacity-[.68]">></span> Команды
-      <span class="text-dark-blue opacity-[.68]">></span> Информация о команде
+      <router-link :to="{ name: 'PersonalAccount' }"
+        ><span class="hover:underline hover:underline-offset-4">Главная</span></router-link
+      >
+      <span class="text-dark-blue opacity-[.68]"> > </span>
+      <router-link :to="{ name: 'MyTeams' }"
+        ><span class="hover:underline hover:underline-offset-4">Команды</span></router-link
+      >
+      <span class="text-dark-blue opacity-[.68]"> > </span> Информация о команде
     </p>
     <div class="bg-white shadow rounded-2xl p-5">
       <section class="flex items-center gap-8">
